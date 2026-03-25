@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { increaseQuantity, decreaseQuantity, removeFromCart, clearCart } from './CartSlice';
+import { updateQuantity, removeItem } from './CartSlice';
 
 const CartItem = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -9,21 +9,33 @@ const CartItem = () => {
   const totalItems = useSelector((state) => state.cart.totalItems);
   const dispatch = useDispatch();
 
+  const calculateTotalAmount = () => {
+    return cartItems.reduce((total, item) => total + (item.quantity * item.price), 0);
+  };
+
   const handleIncreaseQuantity = (itemId) => {
-    dispatch(increaseQuantity(itemId));
+    const item = cartItems.find(item => item.id === itemId);
+    if (item) {
+      dispatch(updateQuantity({ id: itemId, quantity: item.quantity + 1 }));
+    }
   };
 
   const handleDecreaseQuantity = (itemId) => {
-    dispatch(decreaseQuantity(itemId));
+    const item = cartItems.find(item => item.id === itemId);
+    if (item) {
+      dispatch(updateQuantity({ id: itemId, quantity: item.quantity - 1 }));
+    }
   };
 
   const handleRemoveItem = (itemId) => {
-    dispatch(removeFromCart(itemId));
+    dispatch(removeItem(itemId));
   };
 
   const handleCheckout = () => {
     alert('Coming Soon! Checkout functionality will be available soon.');
   };
+
+  const calculatedTotal = calculateTotalAmount();
 
   if (cartItems.length === 0) {
     return (
@@ -53,15 +65,15 @@ const CartItem = () => {
         </div>
         <div className="summary-row">
           <span>Subtotal:</span>
-          <span>${totalAmount.toFixed(2)}</span>
+          <span>${calculatedTotal.toFixed(2)}</span>
         </div>
         <div className="summary-row">
           <span>Tax (8%):</span>
-          <span>${(totalAmount * 0.08).toFixed(2)}</span>
+          <span>${(calculatedTotal * 0.08).toFixed(2)}</span>
         </div>
         <div className="summary-row summary-total">
           <span>Total:</span>
-          <span>${(totalAmount * 1.08).toFixed(2)}</span>
+          <span>${(calculatedTotal * 1.08).toFixed(2)}</span>
         </div>
       </div>
 
@@ -76,6 +88,7 @@ const CartItem = () => {
           <div className="cart-item-details">
             <h3 className="cart-item-name">{item.name}</h3>
             <p className="cart-item-price">${item.price.toFixed(2)} each</p>
+            <p className="cart-item-total">Item Total: ${(item.quantity * item.price).toFixed(2)}</p>
           </div>
           
           <div className="quantity-controls">
@@ -95,7 +108,7 @@ const CartItem = () => {
           </div>
           
           <div className="cart-item-total">
-            <p>${item.total.toFixed(2)}</p>
+            <p>${(item.quantity * item.price).toFixed(2)}</p>
           </div>
           
           <button 

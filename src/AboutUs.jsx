@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutUs = () => {
   return (
-    <div className="about-container" style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+    <div className="about-us-container" style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
       <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '2rem', color: '#065f46' }}>
         About Paradise Nursery
       </h1>

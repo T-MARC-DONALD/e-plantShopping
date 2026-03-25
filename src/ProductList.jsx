@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart } from './CartSlice';
+import { addItem } from './CartSlice';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -161,7 +161,7 @@ const ProductList = () => {
   };
 
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
+    dispatch(addItem(product));
     setAddedItems(new Set([...addedItems, product.id]));
   };
 
