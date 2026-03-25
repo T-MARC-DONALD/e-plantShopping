@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradise Nursery - Your Houseplant Paradise</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen">
+    <!-- Landing Page -->
+    <div id="landing-page" class="min-h-screen bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="relative z-10 flex flex-col items-center justify-center min-h-screen text-white px-4">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-center">Paradise Nursery</h1>
+            <p class="text-lg md:text-xl max-w-2xl text-center mb-8 leading-relaxed">
+                Welcome to Paradise Nursery, your premier destination for beautiful houseplants. 
+                We believe that every home deserves a touch of green, and our carefully curated 
+                collection of houseplants will transform your living space into a thriving paradise. 
+                From low-maintenance succulents to stunning tropical varieties, we have the perfect 
+                plant for every home and every skill level.
+            </p>
+            <button onclick="navigateToProducts()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-200 transform hover:scale-105">
+                Get Started
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
